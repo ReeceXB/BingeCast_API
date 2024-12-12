@@ -8,6 +8,8 @@ defmodule BingecastApi.Blog.Post do
     field :description, :string
     field :content, :string
 
+    belongs_to :user, BingecastApi.Users.User
+
     timestamps()
   end
 

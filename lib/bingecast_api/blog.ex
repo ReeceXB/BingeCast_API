@@ -8,10 +8,16 @@ defmodule BingecastApi.Blog do
     Repo.all(from p in Post, order_by: [desc: p.inserted_at])
   end
 
-  def create_post(attrs \\ %{}) do
+  def list_posts(%BingecastApi.Users.User{id: user_id}) do
+    Repo.all(from p in Post, where: p.user_id == ^user_id, preload: [:user], order_by: [desc: :inserted_at])
+  end
+
+  def create_post!(%BingecastApi.Users.User{} = user, attrs \\ %{}) do
     %Post{}
     |> Post.changeset(attrs)
-    |> Repo.insert()
+    |> Ecto.Changeset.put_assoc(:user, user)
+    |> Repo.insert!()
+    |> Repo.preload([:user])
   end
 
   def get_post(id) do

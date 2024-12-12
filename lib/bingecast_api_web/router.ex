@@ -14,7 +14,7 @@ defmodule BingecastApiWeb.Router do
   scope "/api", BingecastApiWeb do
     pipe_through [:api, :api_protected]
 
-    resources "/posts", PostController, only: [:create]  # Post creation should be protected
+    resources "/my-posts", MyPostController, only: [:index, :create]
   end
 
   # Public routes
