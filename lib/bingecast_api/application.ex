@@ -8,19 +8,17 @@ defmodule BingecastApi.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      BingecastApiWeb.Telemetry,
+      # Start the Ecto repository
       BingecastApi.Repo,
-      {Ecto.Migrator,
-        repos: Application.fetch_env!(:bingecast_api, :ecto_repos),
-        skip: skip_migrations?()},
-      {DNSCluster, query: Application.get_env(:bingecast_api, :dns_cluster_query) || :ignore},
+      # Start the Telemetry supervisor
+      BingecastApiWeb.Telemetry,
+      # Start the PubSub system
       {Phoenix.PubSub, name: BingecastApi.PubSub},
-      # Start the Finch HTTP client for sending emails
-      {Finch, name: BingecastApi.Finch},
+      # Start the Endpoint (http/https)
+      BingecastApiWeb.Endpoint,
+      Pow.Store.Backend.MnesiaCache
       # Start a worker by calling: BingecastApi.Worker.start_link(arg)
-      # {BingecastApi.Worker, arg},
-      # Start to serve requests, typically the last entry
-      BingecastApiWeb.Endpoint
+      # {BingecastApi.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -39,6 +39,13 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# config :bingecast_api, :pow,
+#   user: BingecastApi.Users.User,
+#   repo: BingecastApi.Repo
+
+config :bingecast_api, :pow,
+  cache_store_backend: Pow.Store.Backend.MnesiaCache
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

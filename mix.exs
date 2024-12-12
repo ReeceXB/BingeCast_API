@@ -33,6 +33,7 @@ defmodule BingecastApi.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.17"},
+      {:pow, "~> 1.0.31"},
       {:cors_plug, "~> 3.0"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},

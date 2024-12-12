@@ -48,6 +48,7 @@ defmodule BingecastApiWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug Pow.Plug.Session, otp_app: :bingecast_api
   plug CORSPlug, origin: ["http://localhost:3000"]
   plug BingecastApiWeb.Router
 end
