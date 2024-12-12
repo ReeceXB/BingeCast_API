@@ -43,8 +43,21 @@ config :phoenix, :json_library, Jason
 #   user: BingecastApi.Users.User,
 #   repo: BingecastApi.Repo
 
+#config :bingecast_api, :pow,
+#  cache_store_backend: Pow.Store.Backend.MnesiaCache
+
 config :bingecast_api, :pow,
-  cache_store_backend: Pow.Store.Backend.MnesiaCache
+  user: BingecastApi.Users.User,
+  repo: BingecastApi.Repo,
+  web_module: BingecastApiWeb,
+  extensions: [PowPersistentSession], # Add if using API token authentication
+  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
+  messages_backend: BingecastApiWeb.Pow.Messages
+
+config :bingecast_api, BingecastApiWeb.Endpoint,
+  render_errors: [view: BingecastApiWeb.ErrorView, accepts: ~w(json)]
+
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
