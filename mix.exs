@@ -16,10 +16,17 @@ defmodule BingecastApi.MixProject do
   # Configuration for the OTP application.
   #
   # Type `mix help compile.app` for more information.
+
+  # def application do
+  #   [
+  #     mod: {BingecastApi.Application, []},
+  #     extra_applications: [:logger, :runtime_tools]
+  #   ]
+  # end
   def application do
     [
       mod: {BingecastApi.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :pow, :bcrypt_elixir] # Pow MUST be here.
     ]
   end
 
@@ -34,6 +41,7 @@ defmodule BingecastApi.MixProject do
     [
       {:phoenix, "~> 1.7.17"},
       {:pow, "~> 1.0.31"},
+      {:hackney, "~> 1.9"},
       {:cors_plug, "~> 3.0"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
@@ -46,7 +54,8 @@ defmodule BingecastApi.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:bcrypt_elixir, "~> 3.0"}
     ]
   end
 

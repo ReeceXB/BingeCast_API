@@ -5,6 +5,7 @@ defmodule BingecastApiWeb.RegistrationController do
   alias Plug.Conn
   alias BingecastApiWeb.ErrorHelpers
 
+  @spec create(Conn.t(), map()) :: Conn.t()
   def create(conn, %{"user" => user_params}) do
     conn
     |> Pow.Plug.create_user(user_params)

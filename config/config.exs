@@ -39,8 +39,16 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+
+# config :bingecast_api, :pow,
+#   user: BingecastApi.Users.User,
+#   repo: BingecastApi.Repo,
+#   cache_store_backend: Pow.Store.Backend.MnesiaCache
 config :bingecast_api, :pow,
+  user: BingecastApi.Users.User,
+  repo: BingecastApi.Repo,
   cache_store_backend: Pow.Store.Backend.MnesiaCache
+
 
 config :bingecast_api, BingecastApiWeb.Endpoint,
   render_errors: [view: BingecastApiWeb.ErrorView, accepts: ~w(json)]

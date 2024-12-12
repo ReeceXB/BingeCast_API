@@ -1,7 +1,7 @@
 defmodule BingecastApiWeb.PostController do
   use BingecastApiWeb, :controller
   alias BingecastApi.Blog
-  alias BingecastApi.Blog.Post
+  #alias BingecastApi.Blog.Post
 
   def index(conn, _params) do
     posts = Blog.list_posts()
